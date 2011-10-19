@@ -1,3 +1,9 @@
+uhub-unstable (0.3.2-20111017-205104-3b4a199-0ppa1~oneiric1) oneiric; urgency=low
+
+  * Minor update from GIT master branch.
+
+ -- Boris Pek <tehnick-8@mail.ru>  Mon, 17 Oct 2011 20:51:18 +0300
+
 uhub-unstable (0.3.2-20110928-190120-f8d057f-0ppa1~oneiric1) oneiric; urgency=low
 
   * Minor update from GIT master branch.
