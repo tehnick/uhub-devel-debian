@@ -1,0 +1,3 @@
+# This is important security issue. These logs shouldn't be available
+# for reading by others.
+uhub-unstable: non-standard-dir-perm var/log/uhub/ 0750 != 0755

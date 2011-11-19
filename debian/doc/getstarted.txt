@@ -1,0 +1,41 @@
+Getting started guide
+---------------------
+
+(This document is maintained at http://www.uhub.org/getstarted.php)
+
+
+Start the hub in the foreground for the first time. Shut it down, by pressing CTRL+C.
+
+  % uhub
+  Thu, 05 Feb 2009 00:48:04 +0000 INFO: Starting server, listening on :::1511...
+
+Connect to the hub using an ADC client, use the address adc://localhost:1511, or replace localhost with the correct hostname or IP address.
+NOTE: It is important to use the "adc://" prefix, and the port number when using DC++ and other ADC clients.
+
+If you modify the configuration files in /etc/uhub you will have to notify uhub by sending a HUP signal.
+
+  % kill -HUP <pid of uhub>
+Or, for the lazy people
+  % killall -HUP uhub
+
+In order to run uhub as a daemon, start it with the -f switch which will make it fork into the background.
+In addition, use the -l to specify a log file instead of stdout. One can also specify a specific user and/or group, 
+if one wishes to run uhub as a specific user using the -u and -g switches.
+
+Example:
+  % uhub -f -l mylog.txt -u nobody -g nogroup
+
+
+If you are planning to more than 1024 users on hub, you must increase the max number of file descriptors allowed.
+This limit needs to be higher than the configured max_users in uhub.conf.
+
+In linux can add the following lines to /etc/security/limits.conf (allows for ~4000 users)
+      *     soft nofile 4096
+      *     hard nofile 4096
+
+Or, you can use (as root):
+  % ulimit -n 4096
+                     
+
+
+Other documentation can be found here: http://www.uhub.org/documentation.php

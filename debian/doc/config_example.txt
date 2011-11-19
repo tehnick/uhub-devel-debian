@@ -1,0 +1,49 @@
+Example configuration
+---------------------
+
+(This document is maintained at http://www.uhub.org/config_example.php)
+
+
+Configuration files are normaly placed in /etc/uhub/ on most systems, and consist of 3 files:
+
+uhub.conf
+    The main configuration file
+users.conf
+    The user registration and access control file
+motd.txt
+    A text file containing a "message of the day", which is a welcome message sent to all users connecting to the hub.
+
+
+Example: uhub.conf
+
+hub_name=My Public Hub
+hub_description=Yet another ADC hub
+
+server_port=12345
+server_bind_addr=any
+max_users=150
+
+file_acl=/etc/uhub/users.conf
+file_motd=/etc/uhub/motd.txt
+
+
+Example: users.conf
+
+# Deny users from certain IP-addresses
+deny_ip 10.21.44.7/24
+deny_ip 10.22.43.15-10.22.43.19
+
+# Administrator
+user_admin Administrator:password
+
+# Operators
+user_op Dj_Offset:password
+user_op TrustedUser:password
+
+# Registered users
+user_reg Friend:password
+
+# Banned users
+ban_nick Enemy
+ban_nick Spammer
+

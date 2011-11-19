@@ -8,9 +8,15 @@ ifeq (,$(NUMJOBS))
 	NUMJOBS = 1
 endif
 
-makeopts := DESTDIR=$(CURDIR)/debian/uhub-unstable/ \
-	UHUB_PREFIX=$(CURDIR)/debian/uhub-unstable/usr \
-	RELEASE=YES SILENT=YES
+PACKAGE = uhub
+DEVELOPER = janvidar
+PROJECT = uhub
+
+CUR_VER = $(shell dpkg-parsechangelog | sed -ne 's/^Version: \(\([0-9]\+\):\)\?\(.*\)-.*/\3/p')
+
+MAKEOPTS := DESTDIR=$(CURDIR)/debian/uhub-unstable/ \
+            UHUB_PREFIX=$(CURDIR)/debian/uhub-unstable/usr \
+            RELEASE=YES
 
 build: build-arch build-indep
 
@@ -20,7 +26,7 @@ build-indep: build-stamp
 
 build-stamp:
 	dh_testdir
-	$(MAKE) -j$(NUMJOBS) $(makeopts)
+	$(MAKE) -j$(NUMJOBS) $(MAKEOPTS)
 	touch $@
 
 clean:
@@ -35,7 +41,21 @@ install: build
 	dh_testroot
 	dh_prep
 	dh_installdirs
-	$(MAKE) install $(makeopts)
+	$(MAKE) install $(MAKEOPTS)
+	chmod 0750 $(CURDIR)/debian/uhub-unstable/var/log/uhub
+
+get-orig-source:
+	# preparation
+	rm -rf  "$(CUR_VER)"/ "$(PACKAGE)-$(CUR_VER)"/
+	# sources
+	wget -4 "http://nodeload.github.com/$(DEVELOPER)/$(PROJECT)/tarball/$(CUR_VER)"
+	rm -rf $(DEVELOPER)-$(PROJECT)-*
+	tar xzf "$(CUR_VER)"
+	mv $(DEVELOPER)-$(PROJECT)-* "$(PACKAGE)-$(CUR_VER)"
+	# tarball
+	tar -cjf "$(PACKAGE)_$(CUR_VER).orig.tar.bz2" "$(PACKAGE)-$(CUR_VER)"
+	# cleaning
+	rm -rf "$(PACKAGE)-$(CUR_VER)" "$(CUR_VER)"
 
 binary-indep: build install
 
@@ -48,6 +68,7 @@ binary-arch: build install
 	dh_installman -A
 	dh_installchangelogs ChangeLog
 	dh_strip
+	dh_lintian
 	dh_compress
 	dh_installdeb
 	dh_shlibdeps

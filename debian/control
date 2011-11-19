@@ -5,8 +5,8 @@ Maintainer: Boris Pek <tehnick-8@mail.ru>
 Build-Depends: debhelper (>= 7), fakeroot,
  libsqlite3-dev, libssl-dev
 Homepage: http://www.uhub.org/
-Vcs-Git: git://github.com/janvidar/uhub.git
-Vcs-Browser: https://github.com/janvidar/uhub/
+Vcs-Git: git://github.com/tehnick/uhub-unstable-debian.git
+Vcs-Browser: https://github.com/tehnick/uhub-unstable-debian
 Standards-Version: 3.9.2
 
 Package: uhub-unstable
