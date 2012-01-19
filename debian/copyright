@@ -1,8 +1,9 @@
-Format: http://anonscm.debian.org/viewvc/dep/web/deps/dep5.mdwn?revision=202
+Format: http://anonscm.debian.org/viewvc/dep/web/deps/dep5.mdwn?revision=248
 Debianized-By: Boris Pek <tehnick-8@mail.ru>
 Debianized-Date: Tue, 27 Sep 2011 02:02:40 +0300
-Upstream-Author: Jan Vidar Krey <janvidar@extatic.org>
-Original-Source: https://github.com/janvidar/uhub/tags
+Upstream-Name: uHub
+Upstream-Contact: Jan Vidar Krey <janvidar@extatic.org>
+Source: https://github.com/janvidar/uhub/tags
  The orig.tar.bz2 is generated from upstream gzipped tarball, except it uses
  bzip compression. See section get-orig-source in debian/rules file for details.
  .

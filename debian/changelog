@@ -1,3 +1,9 @@
+uhub-unstable (0.3.2-20120119-230332-8607b40-0ppa1~precise1) precise; urgency=low
+
+  * Minor update from GIT master branch.
+
+ -- Boris Pek <tehnick-8@mail.ru>  Thu, 19 Jan 2012 23:03:40 +0200
+
 uhub-unstable (0.3.2-20120115-235236-a9b5c6d-0ppa1~precise1) precise; urgency=low
 
   * Minor update from GIT master branch.
