@@ -7,7 +7,7 @@ Build-Depends: debhelper (>= 7), fakeroot,
 Homepage: http://www.uhub.org/
 Vcs-Git: git://github.com/tehnick/uhub-unstable-debian.git
 Vcs-Browser: https://github.com/tehnick/uhub-unstable-debian/tree/launchpad/debian
-Standards-Version: 3.9.2
+Standards-Version: 3.9.3
 
 Package: uhub-unstable
 Architecture: any
