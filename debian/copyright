@@ -4,8 +4,8 @@ Debianized-Date: Tue, 27 Sep 2011 02:02:40 +0300
 Upstream-Name: uHub
 Upstream-Contact: Jan Vidar Krey <janvidar@extatic.org>
 Source: https://github.com/janvidar/uhub/tags
- The orig.tar.bz2 is generated from upstream gzipped tarball, except it uses
- bzip compression. See section get-orig-source in debian/rules file for details.
+ The orig.tar.xz is generated from upstream gzipped tarball, except it uses
+ LZMA2 compression. See section get-orig-source in debian/rules file for details.
  .
  There is no constant tarball in GitHub: it is generated each time when it is
  asked. So we do not need to keep original tarball in Debian.
