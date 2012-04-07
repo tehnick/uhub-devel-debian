@@ -8,74 +8,50 @@ ifeq (,$(NUMJOBS))
 	NUMJOBS = 1
 endif
 
-PACKAGE = uhub
+PACKAGE = uhub-unstable
 DEVELOPER = janvidar
 PROJECT = uhub
 
-CUR_VER = $(shell dpkg-parsechangelog | sed -ne 's/^Version: \(\([0-9]\+\):\)\?\(.*\)-.*/\3/p')
+DEB_DH_INSTALL_SOURCEDIR = $(CURDIR)/debian/$(PACKAGE)
 
-MAKEOPTS := DESTDIR=$(CURDIR)/debian/uhub-unstable/ \
-            UHUB_PREFIX=$(CURDIR)/debian/uhub-unstable/usr \
-            RELEASE=YES
+CUR_VER = $(shell uscan --dehs | sed -n 's/.*<upstream-version>\(.*\)<\/upstream-version>.*/\1/p')
 
-build: build-arch build-indep
+MAKEOPTS := DESTDIR=$(DEB_DH_INSTALL_SOURCEDIR) \
+            UHUB_PREFIX=$(DEB_DH_INSTALL_SOURCEDIR)/usr \
+            RELEASE=YES \
+            USE_SSL=YES
 
-build-arch: build-stamp
+%:
+	dh $@ --parallel
 
-build-indep: build-stamp
-
-build-stamp:
-	dh_testdir
+override_dh_auto_build:
 	$(MAKE) -j$(NUMJOBS) $(MAKEOPTS)
-	touch $@
 
-clean:
-	dh_testdir
+override_dh_auto_clean:
 	dh_testroot
 	rm -f build-stamp
 	$(MAKE) clean
-	dh_clean
 
-install: build
-	dh_testdir
-	dh_testroot
-	dh_prep
-	dh_installdirs
+override_dh_auto_install:
 	$(MAKE) install $(MAKEOPTS)
-	chmod 0750 $(CURDIR)/debian/uhub-unstable/var/log/uhub
+	chmod 0750 $(DEB_DH_INSTALL_SOURCEDIR)/var/log/uhub
+
+.PHONY: override_dh_installman
+override_dh_installman:
+	dh_installman -A
 
 get-orig-source:
 	# preparation
-	rm -rf  "$(CUR_VER)"/ "$(PACKAGE)-$(CUR_VER)"/
+	rm -rf "$(PACKAGE)-$(CUR_VER)" "$(CUR_VER)"
 	# sources
 	wget -4 "http://nodeload.github.com/$(DEVELOPER)/$(PROJECT)/tarball/$(CUR_VER)"
 	rm -rf $(DEVELOPER)-$(PROJECT)-*
 	tar xzf "$(CUR_VER)"
 	mv $(DEVELOPER)-$(PROJECT)-* "$(PACKAGE)-$(CUR_VER)"
 	# tarball
-	tar -cJf "$(PACKAGE)_$(CUR_VER).orig.tar.xz" "$(PACKAGE)-$(CUR_VER)"
+	tar -cJf ../"$(PACKAGE)_$(CUR_VER).orig.tar.xz" "$(PACKAGE)-$(CUR_VER)"
 	# cleaning
 	rm -rf "$(PACKAGE)-$(CUR_VER)" "$(CUR_VER)"
 
-binary-indep: build install
+.PHONY: override_dh_auto_test override_dh_fixperms
 
-binary-arch: build install
-	dh_testdir
-	dh_testroot
-	dh_installdocs
-	dh_installinit
-	dh_installlogrotate
-	dh_installman -A
-	dh_installchangelogs ChangeLog
-	dh_strip
-	dh_lintian
-	dh_compress
-	dh_installdeb
-	dh_shlibdeps
-	dh_gencontrol
-	dh_md5sums
-	dh_builddeb
-
-binary: binary-indep binary-arch
-
-.PHONY: build clean binary-indep binary-arch binary install
