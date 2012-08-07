@@ -1,8 +1,8 @@
-uhub-unstable (0.4.0-20120730-193947-03c4292-0ppa1~quantal1) quantal; urgency=low
+uhub-unstable (0.4.0-20120807-192823-b0aa690-0ppa1~quantal1) quantal; urgency=low
 
   * Minor update from GIT master branch.
 
- -- Boris Pek <tehnick-8@mail.ru>  Mon, 30 Jul 2012 19:39:53 +0300
+ -- Boris Pek <tehnick-8@mail.ru>  Tue, 07 Aug 2012 19:28:37 +0300
 
 uhub-unstable (0.3.2-20110927-212829-39572c3-0ppa1~oneiric1) oneiric; urgency=low
 
