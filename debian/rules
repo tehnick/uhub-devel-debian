@@ -1,13 +1,5 @@
 #!/usr/bin/make -f
 
-ifneq (,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
-	NUMJOBS = $(patsubst parallel=%,%,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
-endif
-
-ifeq (,$(NUMJOBS))
-	NUMJOBS = 1
-endif
-
 PACKAGE = uhub-unstable
 DEVELOPER = janvidar
 PROJECT = uhub
@@ -31,7 +23,7 @@ MAKEOPTS := DESTDIR=$(DEB_DH_INSTALL_SOURCEDIR) \
 	dh $@ --parallel
 
 override_dh_auto_build:
-	dh_auto_build $(MAKEOPTS)
+	dh_auto_build -- $(MAKEOPTS)
 
 override_dh_auto_clean:
 	dh_testroot
@@ -60,4 +52,3 @@ get-orig-source:
 	rm -rf "$(PACKAGE)-$(CUR_VER)" "$(CUR_VER)"
 
 .PHONY: override_dh_auto_test override_dh_fixperms
-
