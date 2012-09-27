@@ -31,7 +31,7 @@ MAKEOPTS := DESTDIR=$(DEB_DH_INSTALL_SOURCEDIR) \
 	dh $@ --parallel
 
 override_dh_auto_build:
-	$(MAKE) -j$(NUMJOBS) $(MAKEOPTS)
+	dh_auto_build $(MAKEOPTS)
 
 override_dh_auto_clean:
 	dh_testroot
@@ -55,7 +55,7 @@ get-orig-source:
 	tar xzf "$(CUR_VER)"
 	mv $(DEVELOPER)-$(PROJECT)-* "$(PACKAGE)-$(CUR_VER)"
 	# tarball
-	tar -cJf ../"$(PACKAGE)_$(CUR_VER).orig.tar.xz" "$(PACKAGE)-$(CUR_VER)"
+	tar -cJf "$(PACKAGE)_$(CUR_VER).orig.tar.xz" "$(PACKAGE)-$(CUR_VER)"
 	# cleaning
 	rm -rf "$(PACKAGE)-$(CUR_VER)" "$(CUR_VER)"
 
