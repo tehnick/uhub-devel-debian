@@ -17,7 +17,8 @@ export CPPFLAGS CFLAGS CXXFLAGS LDFLAGS
 MAKEOPTS := DESTDIR=$(DEB_DH_INSTALL_SOURCEDIR) \
             UHUB_PREFIX=$(DEB_DH_INSTALL_SOURCEDIR)/usr \
             RELEASE=YES \
-            USE_SSL=YES
+            USE_SSL=YES \
+            SILENT=NO
 
 %:
 	dh $@ --parallel
