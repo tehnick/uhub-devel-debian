@@ -1,3 +1,6 @@
 # This is important security issue. These logs shouldn't be available
 # for reading by others.
 uhub-unstable: non-standard-dir-perm var/log/uhub/ 0750 != 0755
+
+# False positives for lintian tag hardening-no-fortify-functions.
+uhub-unstable: hardening-no-fortify-functions usr/lib/uhub/*.so
