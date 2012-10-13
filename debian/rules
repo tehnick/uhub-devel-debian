@@ -4,8 +4,6 @@ PACKAGE = uhub-unstable
 DEVELOPER = janvidar
 PROJECT = uhub
 
-DEB_DH_INSTALL_SOURCEDIR = $(CURDIR)/debian/$(PACKAGE)
-
 CUR_VER = $(shell uscan --dehs | sed -n 's/.*<upstream-version>\(.*\)<\/upstream-version>.*/\1/p')
 
 CPPFLAGS:=$(shell dpkg-buildflags --get CPPFLAGS)
@@ -13,30 +11,28 @@ CFLAGS:=$(shell dpkg-buildflags --get CFLAGS) $(CPPFLAGS)
 LDFLAGS:=$(shell dpkg-buildflags --get LDFLAGS) -Wl,--as-needed
 export CPPFLAGS CFLAGS LDFLAGS
 
-MAKEOPTS := DESTDIR=$(DEB_DH_INSTALL_SOURCEDIR) \
-            UHUB_PREFIX=$(DEB_DH_INSTALL_SOURCEDIR)/usr \
-            RELEASE=YES \
-            USE_SSL=YES \
-            SILENT=NO
+# This option is for daily builds of the uHub packages on Launchpad
+# See https://launchpad.net/~tehnick/+archive/tehnick for more information
+REVISION = $(shell dpkg-parsechangelog | sed -ne 's|^Version: .*-.*-\(.*\)-.*$$|\1|p')
+CMAKEOPTS += -DUHUB_REVISION="git-$(REVISION)"
 
 %:
 	dh $@ --parallel
 
-override_dh_auto_build:
-	dh_auto_build -- $(MAKEOPTS)
+# For daily builds only:
+override_dh_auto_configure:
+	dh_auto_configure -- $(CMAKEOPTS)
 
 override_dh_auto_clean:
-	dh_testroot
-	rm -f build-stamp
-	$(MAKE) clean
+	dh_auto_clean
+	rm -f $(CURDIR)/src/version.h
 
 override_dh_auto_install:
-	$(MAKE) install $(MAKEOPTS)
-	chmod 0750 $(DEB_DH_INSTALL_SOURCEDIR)/var/log/uhub
+	dh_auto_install
+	chmod 0750 $(CURDIR)/debian/$(PACKAGE)/var/log/uhub
 
-.PHONY: override_dh_installman
-override_dh_installman:
-	dh_installman -A
+# Do nothing:
+.PHONY: override_dh_fixperms
 
 get-orig-source:
 	# preparation
@@ -50,5 +46,3 @@ get-orig-source:
 	tar -cJf "$(PACKAGE)_$(CUR_VER).orig.tar.xz" "$(PACKAGE)-$(CUR_VER)"
 	# cleaning
 	rm -rf "$(PACKAGE)-$(CUR_VER)" "$(CUR_VER)"
-
-.PHONY: override_dh_auto_test override_dh_fixperms
