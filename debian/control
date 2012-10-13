@@ -2,7 +2,7 @@ Source: uhub-unstable
 Section: net
 Priority: optional
 Maintainer: Boris Pek <tehnick-8@mail.ru>
-Build-Depends: debhelper (>= 7.0.50~), fakeroot, cmake,
+Build-Depends: debhelper (>= 7.0.50~), cmake (>= 2.8.3), fakeroot,
  libsqlite3-dev, libssl-dev
 Homepage: http://www.uhub.org/
 Vcs-Git: git://github.com/tehnick/uhub-unstable-debian.git
