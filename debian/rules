@@ -38,10 +38,9 @@ get-orig-source:
 	# preparation
 	rm -rf "$(PACKAGE)-$(CUR_VER)" "$(CUR_VER)"
 	# sources
-	wget -4 "http://nodeload.github.com/$(DEVELOPER)/$(PROJECT)/tarball/$(CUR_VER)"
-	rm -rf $(DEVELOPER)-$(PROJECT)-*
+	wget -4 "http://nodeload.github.com/$(DEVELOPER)/$(PROJECT)/tar.gz/$(CUR_VER)"
+	rm -rf $(PROJECT)-*
 	tar xzf "$(CUR_VER)"
-	mv $(DEVELOPER)-$(PROJECT)-* "$(PACKAGE)-$(CUR_VER)"
 	# tarball
 	tar -cJf "$(PACKAGE)_$(CUR_VER).orig.tar.xz" "$(PACKAGE)-$(CUR_VER)"
 	# cleaning
