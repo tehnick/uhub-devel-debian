@@ -1,8 +1,8 @@
-uhub-unstable (0.4.1-16-gb81bb2c-0ppa1~raring1) raring; urgency=low
+uhub-unstable (0.4.1-24-gd73d213-0ppa1~raring1) raring; urgency=low
 
   * Minor update from Git master branch.
 
- -- Boris Pek <tehnick-8@mail.ru>  Sun, 24 Mar 2013 19:44:17 +0200
+ -- Boris Pek <tehnick-8@mail.ru>  Tue, 02 Apr 2013 20:10:40 +0300
 
 uhub-unstable (0.3.2-20110927-212829-39572c3-0ppa1~oneiric1) oneiric; urgency=low
 
