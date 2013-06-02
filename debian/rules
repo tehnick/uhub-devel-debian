@@ -38,7 +38,7 @@ get-orig-source:
 	# preparation
 	rm -rf "$(PACKAGE)-$(CUR_VER)" "$(CUR_VER)"
 	# sources
-	wget -4 "http://nodeload.github.com/$(DEVELOPER)/$(PROJECT)/tar.gz/$(CUR_VER)"
+	wget -4 "https://codeload.github.com/$(DEVELOPER)/$(PROJECT)/tar.gz/$(CUR_VER)"
 	rm -rf $(PROJECT)-*
 	tar xzf "$(CUR_VER)"
 	# tarball
