@@ -1,7 +1,7 @@
 Source: uhub-unstable
 Section: net
 Priority: optional
-Maintainer: Boris Pek <tehnick-8@mail.ru>
+Maintainer: Boris Pek <tehnick@debian.org>
 Build-Depends: debhelper (>= 8), cmake (>= 2.8.3), fakeroot,
  libsqlite3-dev, libssl-dev
 Homepage: http://www.uhub.org/
