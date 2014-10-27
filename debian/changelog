@@ -1,3 +1,9 @@
+uhub-unstable (0.5.0-0ppa1~utopic1) utopic; urgency=medium
+
+  * Minor update from Git master branch.
+
+ -- Boris Pek <tehnick@debian.org>  Tue, 28 Oct 2014 00:51:07 +0300
+
 uhub-unstable (0.4.1-40-gc26e8aa-0ppa1~saucy1) saucy; urgency=low
 
   * Minor update from Git master branch.
