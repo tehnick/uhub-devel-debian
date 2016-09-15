@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
 
-PACKAGE = uhub-unstable
+PACKAGE = uhub
 DEVELOPER = janvidar
 PROJECT = uhub
 

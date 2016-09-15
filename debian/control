@@ -1,15 +1,15 @@
-Source: uhub-unstable
+Source: uhub-devel
 Section: net
 Priority: optional
 Maintainer: Boris Pek <tehnick@debian.org>
 Build-Depends: debhelper (>= 8), cmake (>= 2.8.3), fakeroot,
  libsqlite3-dev, libssl-dev
 Homepage: http://www.uhub.org/
-Vcs-Git: git://github.com/tehnick/uhub-unstable-debian.git
-Vcs-Browser: https://github.com/tehnick/uhub-unstable-debian
+Vcs-Git: https://github.com/tehnick/uhub-devel-debian
+Vcs-Browser: https://github.com/tehnick/uhub-devel-debian
 Standards-Version: 3.9.3
 
-Package: uhub-unstable
+Package: uhub
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Replaces: uhub

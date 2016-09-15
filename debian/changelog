@@ -1,4 +1,4 @@
-uhub-unstable (0.5.0-0ppa1~utopic1) utopic; urgency=medium
+uhub-devel (0.5.0-0ppa1~utopic1) utopic; urgency=medium
 
   * Minor update from Git master branch.
 
